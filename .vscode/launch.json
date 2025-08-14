@@ -4,11 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    
         {
-            "type": "msedge",
+            "name": "C#: API Debug",
+            "type": "dotnet",
             "request": "launch",
-            "name": "Open app.html",
-            "file": "c:\\Users\\jolie\\demo\\DatingApp\\client\\src\\app\\app.html"
-        }
-    ]
+            "projectPath": "${workspaceFolder}/API/API.csproj" // To test the program class before actually test the app program
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+        },
+
+      ]    
 }

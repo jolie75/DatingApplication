@@ -11,7 +11,7 @@ import { async, lastValueFrom } from 'rxjs';
 })
 export class App implements OnInit{
 private http = inject(HttpClient);
-protected readonly title =('Building app');
+protected readonly title =('Dating application');
 protected members = signal<any>([])
 
   async ngOnInit() {
