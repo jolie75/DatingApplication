@@ -2,3 +2,6 @@
 
 # CS8602: Dereference of a possibly null reference.
 dotnet_diagnostic.CS8602.severity = silent
+
+# IDE0160: Convert to block scoped namespace
+csharp_style_namespace_declarations = block_scoped

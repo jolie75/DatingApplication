@@ -1,0 +1,53 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, signal } from '@angular/core';
+import { subscribeOn } from 'rxjs';
+
+@Component({
+  selector: 'app-test-errors',
+  imports: [],
+  templateUrl: './test-errors.html',
+  styleUrl: './test-errors.css'
+})
+export class TestErrors {
+  private Http = inject(HttpClient);
+  baseUrl = 'https://localhost:5001/api/';
+  validationErrors = signal<string[]>([]);
+
+  get404Error(){
+    this.Http.get(this.baseUrl + 'buggy/not-found').subscribe({
+      next: response => console.log(response),
+      error: error=> console.log(error),
+    }) 
+  }
+
+   get400Error(){
+    this.Http.get(this.baseUrl + 'buggy/bad-request').subscribe({
+      next: response => console.log(response),
+      error: error=> console.log(error),
+    }) 
+  }
+
+   get500Error(){
+    this.Http.get(this.baseUrl + 'buggy/server-error').subscribe({
+      next: response => console.log(response),
+      error: error=> console.log(error),
+    }) 
+  }
+
+   get401Error(){
+    this.Http.get(this.baseUrl + 'buggy/auth').subscribe({
+      next: response => console.log(response),
+      error: error=> console.log(error),
+    }) 
+  }
+
+   get400ValidationError(){
+    this.Http.post(this.baseUrl + 'account/register', {}).subscribe({
+      next: response => console.log(response),
+      error: error => {
+      console.log(error);
+      this.validationErrors.set(error);
+      }  
+    }) 
+  }
+}
